@@ -4,7 +4,7 @@ services:
   - docker
 
 env:
-  image="debian:nuster"
+  image="debian:buster"
 
 before_install:
   - docker build -t ${image}
