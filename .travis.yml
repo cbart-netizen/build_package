@@ -7,8 +7,8 @@ env:
   image="debian:buster"
 
 before_install:
-  - docker build -t ${image}
-  - docker run -d ${image} /bin/sh -c "apt-get update && apt-get -y install autoconf gcc"
+  - docker build -t debian:buster
+  - docker run -d debian:buster /bin/sh -c "apt-get update && apt-get -y install autoconf gcc"
 #  - docker ps -a
 #  - docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
 
