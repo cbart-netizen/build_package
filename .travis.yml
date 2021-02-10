@@ -6,10 +6,10 @@ env:
   image="debian:buster"
 
 before_install:
-  - docker build -t debian10 -f Dockerfile ./ 
+  - docker build -t debian10 -f Dockerfile ./
 
 script:
-  - docker run -d --rm --name debian10 /bin/sh -c "apt-get update"
+  - docker run -d --rm debian10 /bin/sh -c "apt-get update"
   - docker exec -i debian10 sh -c "apt-get dist-upgrade -s"
 #  - docker exec -i debian10 sh -c "wget --no-check-certificate -O /tmp/master-nrpe.tar.gz https://github.com/NagiosEnterprises/nrpe/archive/master.tar.gz"
 #  - docker run -d --rm --name debian10 /bin/sh -c "wget --no-check-certificate -O /tmp/master-nrpe.tar.gz https://github.com/NagiosEnterprises/nrpe/archive/master.tar.gz"
