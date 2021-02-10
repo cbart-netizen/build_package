@@ -10,7 +10,12 @@ before_install:
 
 script:
   - docker run -d --rm debian10 /bin/sh -c "apt-get update"
-  - docker exec -i debian10 sh -c "apt-get dist-upgrade -s"
+  - docker run -d --rm debian10 /bin/sh -c "wget --no-check-certificate -O /tmp/master-nrpe.tar.gz https://github.com/NagiosEnterprises/nrpe/archive/master.tar.gz"
+  - docker run -d --rm debian10 /bin/sh -c "tar xzf /tmp/master-nrpe.tar.gz -C /tmp"
+  - docker run -d --rm debian10 /bin/sh -c "cd /tmp/nrpe-master && ./configure --enable-command-args"
+  - docker run -d --rm debian10 /bin/sh -c "cd /tmp/nrpe-master && make all"
+#    - docker run -d --rm debian10 /bin/sh -c "apt-get update"
+#  - docker exec -i debian10 sh -c "apt-get dist-upgrade -s"
 #  - docker exec -i debian10 sh -c "wget --no-check-certificate -O /tmp/master-nrpe.tar.gz https://github.com/NagiosEnterprises/nrpe/archive/master.tar.gz"
 #  - docker run -d --rm --name debian10 /bin/sh -c "wget --no-check-certificate -O /tmp/master-nrpe.tar.gz https://github.com/NagiosEnterprises/nrpe/archive/master.tar.gz"
 #  - docker run -d debian10 /bin/sh -c "tar xzf /tmp/master-nrpe.tar.gz -C /tmp"
