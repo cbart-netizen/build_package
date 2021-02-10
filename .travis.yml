@@ -4,7 +4,7 @@ env:
   - GIT_SOURCES_NRPE="https://github.com/NagiosEnterprises/nrpe/archive/master.tar.gz"
 jobs:
  include:
-   - os: linux
+    os: linux
     name: Linux arm64
     arch: arm64
     dist: focal
@@ -50,4 +50,4 @@ jobs:
 #after_success:
 #- ls -l $PACKAGE_NAME_VERSION
 #- md5sum $PACKAGE_NAME_VERSION
-#- dpkg --contents $PACKAGE_NAME_VERSION
+##- dpkg --contents $PACKAGE_NAME_VERSION
