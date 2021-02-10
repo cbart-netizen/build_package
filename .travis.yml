@@ -8,6 +8,28 @@ jobs:
     name: Linux arm64
     arch: arm64
     dist: focal
+    addons:
+      apt:
+        packages:
+          - autoconf
+          - gcc 
+          - libc6
+          - libmcrypt-dev
+          - make
+          - libssl-dev
+          - wget
+          - git
+          - openssh-client
+          - automake
+          - bc
+          - gawk
+          - dc
+          - build-essential
+          - snmp
+          - libnet-snmp-perl
+          - gettext
+          - procps
+
     compiler: gcc
     script:
      - qmake -v
@@ -15,3 +37,17 @@ jobs:
      - tar xzf /tmp/master-nrpe.tar.gz -C /tmp"
      - cd /tmp/nrpe-master && ./configure --enable-command-args
      - cd /tmp/nrpe-master && make all
+
+#env:
+#  global:
+#  - PACKAGE_NAME=nrpe
+#before_install:
+#- export BUILD_VERSION=$(date "+%Y%m%d").$TRAVIS_BUILD_NUMBER
+#- export PACKAGE_NAME_VERSION=$PACKAGE_NAME.$BUILD_VERSION.deb
+#script:
+#- dpkg-deb --build $PACKAGE_NAME
+#- mv $PACKAGE_NAME.deb $PACKAGE_NAME_VERSION
+#after_success:
+#- ls -l $PACKAGE_NAME_VERSION
+#- md5sum $PACKAGE_NAME_VERSION
+#- dpkg --contents $PACKAGE_NAME_VERSION
