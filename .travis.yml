@@ -1,4 +1,4 @@
-language: ruby
+#language: ruby
 
 services:
   - docker
@@ -9,10 +9,7 @@ env:
 before_install:
   - docker build -t debian10 -f Dockerfile ./ 
   - docker run -d debian10 /bin/sh -c "apt-get update"
-  - docker pull debian:buster
-  - docker run debian:buster /bin/sh -c "apt-get update "
-#  - docker ps -a
-#  - docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
-
-#script:
-#  - bundle exec rake test
+  - docker run -d debian10 /bin/sh -c "wget --no-check-certificate -O /tmp/master-nrpe.tar.gz https://github.com/NagiosEnterprises/nrpe/archive/master.tar.gz"
+  - docker run -d debian10 /bin/sh -c "tar xzf /tmp/master-nrpe.tar.gz -C /tmp"
+  - docker run -d debian10 /bin/sh -c "cd /tmp/nrpe-master && ./configure --enable-command-args"
+  - docker run -d debian10 /bin/sh -c "cd /tmp/nrpe-master && make all"
